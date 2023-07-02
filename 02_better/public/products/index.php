@@ -15,7 +15,7 @@ $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 <section class="container mt-5">
   <h1>Products Table</h1>
   <div class="py-4">
-    <a href="insert.php" class="btn btn-info">Add a product</a>
+    <a href="/products/insert.php" class="btn btn-info">Add a product</a>
   </div>
   <div class="table">
     <table class="table">
