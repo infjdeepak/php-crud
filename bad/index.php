@@ -7,7 +7,7 @@ $dbName = "products_db";
 $conn = mysqli_connect($servername, $username, $password, $dbName);
 
 
-//gett alll data
+//get all data
 $sql = "SELECT * FROM `products`";
 $result = mysqli_query($conn, $sql);
 $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -53,7 +53,10 @@ $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
               <td><?php echo $product["created_at"]; ?></td>
               <td>
                 <button class="btn btn-primary">Edit</button>
-                <button class="btn btn-danger">Delete</button>
+                <form action="./delete.php" method="post" class="d-inline-block">
+                  <input type="hidden" name="id" value="<?php echo $product["id"]; ?>">
+                  <button class="btn btn-danger">Delete</button>
+                </form>
               </td>
 
             </tr>
