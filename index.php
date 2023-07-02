@@ -4,7 +4,6 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbName = "products_db";
-
 $conn = mysqli_connect($servername, $username, $password, $dbName);
 
 
@@ -29,6 +28,9 @@ $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 <body>
   <section class="container mt-5">
     <h1>Products Table</h1>
+    <div class="py-4">
+      <a href="insert.php" class="btn btn-info">Add a product</a>
+    </div>
     <div class="table">
       <table class="table">
         <thead>
@@ -45,7 +47,7 @@ $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
           <?php foreach ($products as $i => $product) { ?>
             <tr>
               <td><?php echo $i + 1; ?></td>
-              <td><?php echo $product["image"]; ?></td>
+              <td><img src="<?php echo $product["image"]; ?>" alt=""></td>
               <td><?php echo $product["title"]; ?></td>
               <td><?php echo $product["description"]; ?></td>
               <td><?php echo $product["created_at"]; ?></td>
@@ -63,3 +65,9 @@ $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 </body>
 
 </html>
+
+<style>
+  td img {
+    width: 60px;
+  }
+</style>
