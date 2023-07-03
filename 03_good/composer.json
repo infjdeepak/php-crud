@@ -1,10 +1,15 @@
 {
-    "name": "ids/03_good",
-    "authors": [
-        {
-            "name": "Deepak",
-            "email": "deepak@idevelopingsolutions.com"
-        }
-    ],
-    "require": {}
+  "name": "ids/03_good",
+  "authors": [
+    {
+      "name": "Deepak",
+      "email": "deepak@idevelopingsolutions.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "app\\": "./"
+    }
+  }
 }
