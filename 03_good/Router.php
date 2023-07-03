@@ -2,8 +2,15 @@
 
 namespace app;
 
+use app\Database;
+
 class Router {
   public array $getRoutes = [];
+  public $db;
+
+  public function __construct() {
+    $this->db = new Database();
+  }
 
   public function get($url, $fn) {
     $this->getRoutes[$url] = $fn;
@@ -16,7 +23,6 @@ class Router {
       $fn = $this->getRoutes[$currentUrl] ?? null;
     }
     if ($fn) {
-      print_r($fn);
       call_user_func($fn, $this);
     } else {
       echo "page not found";
@@ -24,6 +30,9 @@ class Router {
   }
 
   public function renderView($view) {
+    ob_start();
     include_once __DIR__ . "/views/$view.php";
+    $content = ob_get_clean();
+    include_once __DIR__ . "/views/_layout.php";
   }
 }

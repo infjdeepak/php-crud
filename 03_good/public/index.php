@@ -9,7 +9,7 @@ $router = new Router();
 
 
 $router->get("/", [new ProductsController(), "index"]);
-$router->get("/products", [new ProductsController(), "index"]);
-$router->get("/products/", [new ProductsController(), "index"]);
+// $router->get("/products", [new ProductsController(), "index"]);
+// $router->get("/products/", [new ProductsController(), "index"]);
 
 $router->resolve();

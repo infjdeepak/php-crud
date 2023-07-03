@@ -6,6 +6,7 @@ namespace app\controllers;
 
 class ProductsController {
   public function index($router) {
+    print_r($router);
     $router->renderView("/products/index");
   }
 }
