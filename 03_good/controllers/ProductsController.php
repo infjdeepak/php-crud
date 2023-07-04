@@ -82,7 +82,7 @@ class ProductsController {
     ]);
   }
   public function delete($router) {
-    echo "delete page";
+    //echo "delete page";
     $id = $_POST["id"] ?? null;
 
     if (!$id) {
