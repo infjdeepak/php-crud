@@ -3,10 +3,53 @@
 namespace app\controllers;
 
 // use app\Router;
+use app\models\Product;
 
 class ProductsController {
+
   public function index($router) {
-    print_r($router);
-    $router->renderView("/products/index");
+
+    $products = $router->db->getproducts();
+    $router->renderView("/products/index", [
+      "products" => $products
+    ]);
+  }
+
+  public function create($router) {
+    $productData = [
+      "title" => "",
+      "description" => "",
+      "image" => ""
+    ];
+    $errors = [];
+    if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+      $productData["title"] = $_POST["title"];
+      $productData["description"] = $_POST["description"];
+      $productData['imageFile'] = $_FILES['image'] ?? null;
+
+      echo "<pre>";
+      print_r($productData);
+      echo "</pre>";
+
+      $product = new Product();
+      $product->load($productData);
+      $errors =  $product->save();
+      if (!$errors) {
+        // header("location: /products");
+        // exit;
+      }
+    }
+
+    $router->renderView("/products/create", [
+      "product" => $productData,
+      "errors" => $errors
+    ]);
+  }
+
+  public function update($router) {
+    echo "update page";
+  }
+  public function delete($router) {
+    echo "delete page";
   }
 }

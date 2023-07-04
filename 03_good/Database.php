@@ -28,4 +28,18 @@ class Database {
     $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
     return $products;
   }
+
+  public function createProduct($product) {
+    // print_r($product);
+    $sql = "INSERT INTO `products` (`title`, `description`, `image`) 
+            VALUES ('$product->title', '$product->description', '$product->imagePath')";
+    try {
+      mysqli_query($this->conn, $sql);
+    } catch (mysqli_sql_exception) {
+      echo mysqli_error($this->conn) . " end </br>";
+      exit;
+    }
+  }
+  public function updateProduct($product) {
+  }
 }
