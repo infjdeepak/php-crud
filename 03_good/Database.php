@@ -29,6 +29,13 @@ class Database {
     return $products;
   }
 
+  public function getProductById($id) {
+    $sql = "SELECT * FROM `products` WHERE `id`=$id";
+    $result = mysqli_query($this->conn, $sql);
+    $product = mysqli_fetch_assoc($result);
+    return $product;
+  }
+
   public function createProduct($product) {
     // print_r($product);
     $sql = "INSERT INTO `products` (`title`, `description`, `image`) 
@@ -41,5 +48,28 @@ class Database {
     }
   }
   public function updateProduct($product) {
+    $sql = "UPDATE `products` SET 
+    `title`='$product->title',
+    `description`='$product->description',
+    `image`='$product->imagePath' WHERE `id`=$product->id";
+    try {
+      mysqli_query($this->conn, $sql);
+      header("location: /");
+      exit;
+    } catch (mysqli_sql_exception) {
+      echo mysqli_error($this->conn) . " end </br>";
+      exit;
+    }
+  }
+  public function deleteProduct($id) {
+    $sql = "DELETE FROM `products` WHERE `id`=$id";
+    try {
+      mysqli_query($this->conn, $sql);
+      header("location: /");
+      exit;
+    } catch (mysqli_sql_exception) {
+      echo mysqli_error($this->conn) . " end </br>";
+      exit;
+    }
   }
 }

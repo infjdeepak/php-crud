@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use app\Database;
+// use app\Database;
 
 
 
@@ -19,10 +19,11 @@ class Product {
     $this->title = $data["title"];
     $this->description = $data["description"];
     $this->imageFile = $data['imageFile'];
-    $this->imagePath = $data["imagePath"] ?? null;
+    $this->imagePath = $data["image"] ?? null;
   }
 
-  public function save() {
+  public function save($router) {
+    // print_r($router);
     // echo "data is saved";
     $errors = [];
     if (!is_dir(__DIR__ . "/../public/images")) {
@@ -44,12 +45,12 @@ class Product {
         move_uploaded_file($this->imageFile["tmp_name"], __DIR__ . '/../public/' . $this->imagePath);
       }
 
-      $db = new Database();
+      // $db = new Database();
 
       if ($this->id) {
-        $db->updateProduct($this);
+        $router->db->updateProduct($this);
       } else {
-        $db->createProduct($this);
+        $router->db->createProduct($this);
       }
     }
     return $errors;

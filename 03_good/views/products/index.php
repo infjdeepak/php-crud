@@ -24,8 +24,8 @@
             <td><?php echo $product["description"]; ?></td>
             <td><?php echo $product["created_at"]; ?></td>
             <td>
-              <a class="btn btn-primary" href="/products/edit.php?id=<?php echo $product["id"]; ?>">Edit</a>
-              <form action="/products/delete.php" method="post" class="d-inline-block">
+              <a class="btn btn-primary" href="/products/update?id=<?php echo $product["id"]; ?>">Edit</a>
+              <form action="/products/delete" method="post" class="d-inline-block">
                 <input type="hidden" name="id" value="<?php echo $product["id"]; ?>">
                 <button class="btn btn-danger">Delete</button>
               </form>
